@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-// import productReducer from "../components/productReducer/reducer";
+import { reducer } from "../ProductReducer/reducer";
 
 const appReducer = combineReducers({
-  //   productReducer,
+  products: reducer,
 });
 
 export type AppState = ReturnType<typeof combineReducers>;
