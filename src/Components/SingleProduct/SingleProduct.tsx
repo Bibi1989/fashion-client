@@ -25,13 +25,14 @@ const quantityArray = [
 const SingleProduct = () => {
   const { productId } = useParams();
   const [increase, setIncrease] = useState(1);
+  const [index, setIndex] = useState(0);
   const dispatch = useDispatch();
   const product = useSelector(({ products: { product } }: any) => product);
   const products = useSelector(({ products: { products } }: any) => products);
   const loading = useSelector(({ products: { loading } }: any) => loading);
   const orders = useSelector(({ products: { orders } }: any) => orders);
   const images =
-    product.image_url !== undefined && JSON.parse(product.image_url);
+    (product.image_url !== undefined && JSON.parse(product.image_url)) || [];
   useEffect(() => {
     getSingleProduct(dispatch, productId);
   }, [increase]);
@@ -42,6 +43,21 @@ const SingleProduct = () => {
   const handleView = () => {
     window.scrollTo(0, 0);
     setIncrease(increase + 1);
+  };
+  const handleImageSelection = (i: number) => {
+    setIndex(i);
+  };
+  const next = () => {
+    setIndex(index + 1);
+    if (index >= images.length - 1) {
+      setIndex(0);
+    }
+  };
+  const prev = () => {
+    setIndex(index - 1);
+    if (index <= 0) {
+      setIndex(images.length - 1);
+    }
   };
   return (
     <div>
@@ -58,7 +74,32 @@ const SingleProduct = () => {
           <Rows>
             <Grids>
               <Image>
-                <img src={images[0]} alt='product image' width='100%' />
+                <ImageRow>
+                  {images !== undefined &&
+                    images.map((image: string, i: number) => (
+                      <ImageCard
+                        key={image}
+                        onClick={() => handleImageSelection(i)}
+                      >
+                        <img src={image} alt='images card' width='100%' />
+                      </ImageCard>
+                    ))}
+                </ImageRow>
+                <div style={{ position: "relative" }}>
+                  <img src={images[index]} alt='product image' width='100%' />
+                  <Icon
+                    name='chevron left'
+                    size='huge'
+                    className='left'
+                    onClick={prev}
+                  />
+                  <Icon
+                    name='chevron right'
+                    size='huge'
+                    className='right'
+                    onClick={next}
+                  />
+                </div>
               </Image>
               <Content>
                 <H1>{product.title}</H1>
@@ -108,6 +149,7 @@ const SingleProduct = () => {
                   key={product.id}
                   product={product}
                   handleView={handleView}
+                  handleCart={handleCart}
                 />
               ))}
             </Grid>
@@ -143,9 +185,37 @@ export const Grids = styled.div`
 export const Image = styled.div`
   max-height: 70vh;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  overflow-y: auto;
+  grid-gap: 1em;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: orangered;
+  }
 
   img {
+    display: block;
     min-height: 100%;
+  }
+
+  .left,
+  .right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-100%);
+    color: orangered;
+    cursor: pointer;
+  }
+
+  .right {
+    right: 0em;
+  }
+  .left {
+    left: 0em;
   }
 `;
 export const Content = styled.div`
@@ -174,6 +244,13 @@ export const Rate = styled.div`
 `;
 export const RateText = styled.p`
   padding-left: 1em;
+`;
+export const ImageRow = styled.div`
+  height: 100%;
+`;
+export const ImageCard = styled.div`
+  margin-bottom: 0.5em;
+  cursor: pointer;
 `;
 export const Label = styled.div`
   background: orange;
