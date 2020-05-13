@@ -1,82 +1,89 @@
 import React from "react";
 import styled from "styled-components";
 import { Carousel } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import AllProduct from "../ProductCards/AllProducts";
 
 const Landing = () => {
+  const token: any = sessionStorage.getItem("ere_token");
   const [index, setIndex] = React.useState<number>(0);
+  const history = useHistory();
 
   const handleSelect = (selectedIndex: number, e: any) => {
     setIndex(selectedIndex);
   };
 
   return (
-    <Row>
-      <Carousel activeIndex={index} onSelect={handleSelect}>
-        <Carousel.Item>
-          <Col>
-            <div className='image'>
-              <img
-                className='d-block w-100'
-                src='./images/fashion.jpg'
-                alt='First slide'
-              />
-            </div>
-            <div className='content'>
-              <h1>ERE PLACE</h1>
-              <h3>A place for your wears</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Necessitatibus corporis fugiat voluptates recusandae similique
-                illo.
-              </p>
-              <p className='rotate'>Lorem, ipsum dolor sit amet cons.</p>
-            </div>
-          </Col>
-        </Carousel.Item>
-        <Carousel.Item>
-          <Col>
-            <div className='image'>
-              <img
-                className='d-block w-100'
-                src='./images/fashion12.jpg'
-                alt='Second slide'
-              />
-            </div>
-            <div className='content'>
-              <h1>ERE PLACE</h1>
-              <h3>A place for your wears</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Necessitatibus corporis fugiat voluptates recusandae similique
-                illo.
-              </p>
-              <p className='rotate'>Lorem, ipsum dolor sit amet cons.</p>
-            </div>
-          </Col>
-        </Carousel.Item>
-        <Carousel.Item>
-          <Col>
-            <div className='image'>
-              <img
-                className='d-block w-100'
-                src='./images/fashion3.jpg'
-                alt='Third slide'
-              />
-            </div>
-            <div className='content'>
-              <h1>ERE PLACE</h1>
-              <h3>A place for your wears</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Necessitatibus corporis fugiat voluptates recusandae similique
-                illo.
-              </p>
-              <p className='rotate'>Lorem, ipsum dolor sit amet cons.</p>
-            </div>
-          </Col>
-        </Carousel.Item>
-      </Carousel>
-    </Row>
+    <div>
+      <Row>
+        <Carousel activeIndex={index} onSelect={handleSelect}>
+          <Carousel.Item>
+            <Col>
+              <div className='image'>
+                <img
+                  className='d-block w-100'
+                  src='./images/fashion.jpg'
+                  alt='First slide'
+                />
+              </div>
+              <div className='content'>
+                <h1>ERE PLACE</h1>
+                <h3>A place for your wears</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Necessitatibus corporis fugiat voluptates recusandae similique
+                  illo.
+                </p>
+                <p className='rotate'>Lorem, ipsum dolor sit amet cons.</p>
+              </div>
+            </Col>
+          </Carousel.Item>
+          <Carousel.Item>
+            <Col>
+              <div className='image'>
+                <img
+                  className='d-block w-100'
+                  src='./images/fashion12.jpg'
+                  alt='Second slide'
+                />
+              </div>
+              <div className='content'>
+                <h1>ERE PLACE</h1>
+                <h3>A place for your wears</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Necessitatibus corporis fugiat voluptates recusandae similique
+                  illo.
+                </p>
+                <p className='rotate'>Lorem, ipsum dolor sit amet cons.</p>
+              </div>
+            </Col>
+          </Carousel.Item>
+          <Carousel.Item>
+            <Col>
+              <div className='image'>
+                <img
+                  className='d-block w-100'
+                  src='./images/fashion3.jpg'
+                  alt='Third slide'
+                />
+              </div>
+              <div className='content'>
+                <h1>ERE PLACE</h1>
+                <h3>A place for your wears</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Necessitatibus corporis fugiat voluptates recusandae similique
+                  illo.
+                </p>
+                <p className='rotate'>Lorem, ipsum dolor sit amet cons.</p>
+              </div>
+            </Col>
+          </Carousel.Item>
+        </Carousel>
+      </Row>
+      <AllProduct />
+    </div>
   );
 };
 

@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Header, Button, Icon } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { PayPalButton } from "react-paypal-button-v2";
+import PaystackButton from "react-paystack";
 import styled from "styled-components";
 import { deleteOrder } from "../../ProductReducer/store";
 
 const OrderList = () => {
+  const token = sessionStorage.getItem("ere_token");
+
   const dispatch = useDispatch();
   const history = useHistory();
   const order: any = localStorage.getItem("fashions");
@@ -29,6 +33,27 @@ const OrderList = () => {
   const continueShopping = () => {
     history.goBack();
   };
+
+  const callback = (response: any) => {
+    console.log(response); // card charged successfully, get reference here
+  };
+
+  const close = () => {
+    alert("Payment closed");
+  };
+
+  const getReference = () => {
+    //you can put any unique reference implementation code here
+    let text = "";
+    let possible =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.=";
+
+    for (let i = 0; i < 15; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  };
+
   return (
     <Div data-aos='fade-left'>
       <h1>Your Cart</h1>
@@ -121,6 +146,37 @@ const OrderList = () => {
         <span>Total Amount: </span> <span>&#8358;</span>{" "}
         <span>{total_price !== null && total_price}</span>
       </h1>
+      {/* <PayPalButton
+        amount={`${total_price}`}
+        // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+        onSuccess={(details: any, data: any) => {
+          alert("Transaction completed by " + details.payer.name.given_name);
+
+          // OPTIONAL: Call your server to save the transaction
+          return fetch("/paypal-transaction-complete", {
+            method: "post",
+            body: JSON.stringify({
+              orderID: data.orderID,
+            }),
+          });
+        }}
+      /> */}
+      <Checkout>Checkout</Checkout>
+      {/* <PaymentModal>
+        <PaystackButton
+          text='Make Payment'
+          className='payButton'
+          callback={callback}
+          close={close}
+          disabled={true}
+          embed={true}
+          reference={getReference()}
+          email={state.email}
+          amount={total_price !== null && total_price * 1000}
+          paystackkey={state.key}
+          tag={<Button>Make Payment</Button>}
+        />
+      </PaymentModal> */}
     </Div>
   );
 };
@@ -129,4 +185,23 @@ export default OrderList;
 
 export const Div = styled.div`
   padding: 3% 10%;
+`;
+export const Checkout = styled.div`
+  width: 120px;
+  padding: 1em 0;
+  text-align: center;
+  background: orangered;
+  color: white;
+  border-radius: 0.3em;
+`;
+export const PaymentModal = styled.div`
+  display: block;
+  width: 50%;
+  margin: auto;
+
+  .paystack-box {
+    overflow: hidden !important;
+    padding: 3em !important;
+    height: 500px;
+  }
 `;

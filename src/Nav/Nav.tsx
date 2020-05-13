@@ -7,10 +7,14 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Cart } from "./Cart";
 import { fetchProducts } from "../ProductReducer/store";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { RegisterInterface } from "../UserReducer/interface";
 
 const Navs = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const token: any = sessionStorage.getItem("ere_token");
+  const user = sessionStorage.getItem("ere_user");
   const order_loading = useSelector(
     ({ products }: any) => products.order_loading
   );
@@ -48,19 +52,36 @@ const Navs = () => {
               <ShowCart>
                 <Cart fashion={fashion} />
               </ShowCart>
-              {true ? (
+              {!token ? (
                 <>
-                  <Nav.Link href='#' style={{ position: "relative" }}>
+                  <Link
+                    to='/login'
+                    style={{ position: "relative", paddingTop: "0.4em" }}
+                  >
                     <Button className='btn_login'>Login</Button>
-                  </Nav.Link>
-                  <Nav.Link href='#' style={{ position: "relative" }}>
+                  </Link>
+                  <Link
+                    to='/register'
+                    style={{ position: "relative", paddingTop: "0.4em" }}
+                  >
                     <Button className='btn_register'>Register</Button>
-                  </Nav.Link>
+                  </Link>
                 </>
               ) : (
                 <>
-                  <Nav.Link href='#' style={{ position: "relative" }}>
-                    <Button className='btn_login'>Logout</Button>
+                  <Nav.Link
+                    href='#'
+                    style={{ position: "relative", paddingTop: "0.4em" }}
+                  >
+                    <Button
+                      className='btn_login'
+                      onClick={() => {
+                        sessionStorage.removeItem("ere_token");
+                        sessionStorage.removeItem("ere_user");
+                      }}
+                    >
+                      Logout
+                    </Button>
                   </Nav.Link>
                 </>
               )}

@@ -13,6 +13,11 @@ import Footer from "./Footer/Footer";
 import AllMen from "./Components/ProductCards/AllMen";
 import AllWomen from "./Components/ProductCards/AllWomen";
 import OrderList from "./Components/OrderList/OrderList";
+import Register from "./UserAuth/Register";
+
+import "react-toastify/dist/ReactToastify.css";
+import Login from "./UserAuth/Login";
+import PageNotFound from "./PageNotFound";
 
 function App() {
   return (
@@ -24,7 +29,13 @@ function App() {
             <Switch>
               <Route exact path='/'>
                 <Landing />
-                <AllProduct />
+                {/* <AllProduct /> */}
+              </Route>
+              <Route exact path='/login'>
+                <Login />
+              </Route>
+              <Route exact path='/register'>
+                <Register />
               </Route>
               <Route exact path='/men'>
                 <AllMen />
@@ -37,6 +48,9 @@ function App() {
               </Route>
               <Route exact path='/product/:productId'>
                 <SingleProduct />
+              </Route>
+              <Route to='/abc'>
+                <PageNotFound />
               </Route>
             </Switch>
           </Div>

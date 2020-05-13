@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import { SpinnerDiv } from "./Product";
 import { Spinner } from "react-bootstrap";
 import CategoryCard from "./CategoryCard";
@@ -8,7 +9,9 @@ import { womenProducts, addOrder } from "../../ProductReducer/store";
 import { Header } from "./ProductHeader";
 
 const AllWomen = () => {
+  const token = sessionStorage.getItem("ere_token");
   const dispatch = useDispatch();
+  const history = useHistory();
   const women = useSelector(({ products }: any) => products.women);
   const loading = useSelector(({ products }: any) => products.loading);
   useEffect(() => {
