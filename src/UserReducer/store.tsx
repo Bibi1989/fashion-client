@@ -2,8 +2,8 @@ import axios from "axios";
 import { RegisterInterface, LoginInterface } from "./interface";
 import { RegisterAction, LoginAction } from "./action";
 import { ERROR, ERROR_LOGIN, LOADING } from "./types";
-const AUTH_URL = "http://localhost:4000/users";
-// const AUTH_URL = "https://ere-place-api.herokuapp.com/users";
+// const AUTH_URL = "http://localhost:4000/users";
+const AUTH_URL = "https://ere-place-api.herokuapp.com/users";
 
 export const RegisterUser = async (
   dispatch: any,

@@ -9,7 +9,11 @@ import { deleteOrder } from "../../ProductReducer/store";
 
 const OrderList = () => {
   const token = sessionStorage.getItem("ere_token");
-
+  const [state] = useState({
+    // key: "sk_test_c147536a9ed04530bd70cc7cc5cc098a7e54bfc7",
+    key: "pk_test_17a5e226d534f69c1e08c24e0342229530ea5b75",
+    email: "bibiaremieye1@gmail.com",
+  });
   const dispatch = useDispatch();
   const history = useHistory();
   const order: any = localStorage.getItem("fashions");
@@ -146,7 +150,7 @@ const OrderList = () => {
         <span>Total Amount: </span> <span>&#8358;</span>{" "}
         <span>{total_price !== null && total_price}</span>
       </h1>
-      {/* <PayPalButton
+      <PayPalButton
         amount={`${total_price}`}
         // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
         onSuccess={(details: any, data: any) => {
@@ -160,9 +164,9 @@ const OrderList = () => {
             }),
           });
         }}
-      /> */}
+      />
       <Checkout>Checkout</Checkout>
-      {/* <PaymentModal>
+      <PaymentModal>
         <PaystackButton
           text='Make Payment'
           className='payButton'
@@ -176,7 +180,7 @@ const OrderList = () => {
           paystackkey={state.key}
           tag={<Button>Make Payment</Button>}
         />
-      </PaymentModal> */}
+      </PaymentModal>
     </Div>
   );
 };
