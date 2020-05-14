@@ -10,8 +10,8 @@ export const RegisterUser = async (
   user: RegisterInterface,
   history: any
 ) => {
+  dispatch({ type: LOADING, payload: true });
   try {
-    dispatch({ type: LOADING, payload: true });
     const response = await axios.post(`${AUTH_URL}/register`, user, {
       headers: {
         "Content-Type": "Application/json",
@@ -31,8 +31,8 @@ export const LoginUser = async (
   user: LoginInterface,
   history: any
 ) => {
+  dispatch({ type: LOADING, payload: true });
   try {
-    dispatch({ type: LOADING, payload: true });
     const response = await axios.post(`${AUTH_URL}/login`, user, {
       headers: {
         "Content-Type": "Application/json",
@@ -45,6 +45,9 @@ export const LoginUser = async (
     dispatch(LoginAction(response.data.data));
   } catch (error) {
     dispatch({ type: LOADING, payload: false });
-    dispatch({ type: ERROR_LOGIN, payload: error.response.data });
+    dispatch({
+      type: ERROR_LOGIN,
+      payload: error.response.data !== undefined && error.response.data,
+    });
   }
 };

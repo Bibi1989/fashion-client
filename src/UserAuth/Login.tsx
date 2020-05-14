@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 import { RegisterForm, H1, Labels, Errors, Buttons } from "./Register";
+import { Spinner } from "react-bootstrap";
 
 interface Users {
   email: string;
@@ -30,7 +31,9 @@ const Login = () => {
   });
   const history = useHistory();
 
-  const errors = useSelector(({ users: { errors } }: any) => errors) || "";
+  const errors =
+    useSelector(({ users: { errors_login } }: any) => errors_login) || "";
+  const loading = useSelector(({ users: { load } }: any) => load) || false;
 
   const dispatch = useDispatch();
 
@@ -101,8 +104,25 @@ const Login = () => {
         <Errors>
           <strong>{errors.error === "User exist" && "*" + errors.error}</strong>
         </Errors>
+        <Errors>
+          <strong>
+            {errors.error === "Password is invalid" && "*" + errors.error}
+          </strong>
+        </Errors>
+        <Errors>
+          <strong>
+            {errors.error === "User have not register" && "*" + errors.error}
+          </strong>
+        </Errors>
 
         <Buttons type='submit' color='orange'>
+          {loading && (
+            <Spinner
+              animation='border'
+              variant='success'
+              style={{ width: "15px", height: "15px", fontSize: "0.4em" }}
+            />
+          )}{" "}
           Login
         </Buttons>
       </RegisterForm>

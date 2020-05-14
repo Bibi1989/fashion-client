@@ -189,6 +189,10 @@ export default OrderList;
 
 export const Div = styled.div`
   padding: 3% 10%;
+
+  @media (max-width: 769px) {
+    padding: 3% 1em;
+  }
 `;
 export const Checkout = styled.div`
   width: 120px;

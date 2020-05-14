@@ -14,4 +14,8 @@ export const Container = styled.div`
   border-radius: 0.3em;
   box-shadow: 0px 2px 15px #eee;
   padding: 1em;
+
+  @media (max-width: 769px) {
+    max-width: 96%;
+  }
 `;

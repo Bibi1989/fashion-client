@@ -6,7 +6,7 @@ const initialState = {
   register: null,
   errors: null,
   errors_login: null,
-  loading: false,
+  load: false,
 };
 
 const UserReducer = (state = initialState, action: any) => {
@@ -31,10 +31,10 @@ const UserReducer = (state = initialState, action: any) => {
         ...state,
         errors_login: action.payload,
       };
-    case ERROR_LOGIN:
+    case LOADING:
       return {
         ...state,
-        loading: action.payload,
+        load: action.payload,
       };
 
     default:

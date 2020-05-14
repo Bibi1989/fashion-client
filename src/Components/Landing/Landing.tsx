@@ -149,7 +149,7 @@ export const Col = styled.div`
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
     .content {
-      padding: 2em;
+      padding: 3em;
     }
     .image {
       display: none;
@@ -158,7 +158,7 @@ export const Col = styled.div`
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
     .content {
-      padding: 2em;
+      padding: 3em;
     }
     .image {
       display: none;
