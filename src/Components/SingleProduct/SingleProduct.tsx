@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct, addOrder } from "../../ProductReducer/store";
-import { SpinnerDiv } from "../ProductCards/Product";
+import { SpinnerDiv } from "../ProductCards/CommonProductStyle";
 import { Spinner } from "react-bootstrap";
 import { Dropdown, Icon, Rating } from "semantic-ui-react";
 import { Row, Grid } from "../ProductCards/AllMen";
-import { Header } from "../ProductCards/MenProducts";
+import { Header } from "../ProductCards/CommonProductStyle";
 import CategoryCard from "../ProductCards/CategoryCard";
 // import { Label, Buttons } from "../ProductCards/Card";
 const quantityArray = [
