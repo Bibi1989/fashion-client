@@ -20,6 +20,7 @@ const AllMen = () => {
   const handleCart = (order: any) => {
     addOrder(dispatch, order, "1");
   };
+
   return (
     <>
       <Header>
@@ -70,7 +71,7 @@ export const Grid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1.5em;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1300px) {
     grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: 800px) {

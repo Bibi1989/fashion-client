@@ -12,11 +12,56 @@ const point = keyframes`
     }
 `;
 
+const move = keyframes`
+    0%{
+        transform: translate(0px, 0px);
+    }
+    50%{
+        transform: translate(10px, 0px);
+    }
+    100%{
+        transform: translate(0px, 0px);
+    }
+`;
+
 export const Grid = styled.div`
-  display: flex;
-  grid-gap: 2.5em;
-  padding: 1em;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+  padding: 2em;
+  transition: all 1s ease-in-out;
+  /* position: relative; */
+  position: relative;
   overflow-x: auto;
+
+  .prev,
+  .next {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 0.3px solid #ddd;
+    box-shadow: 0 2px 10px #eee;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .next {
+    right: 0;
+  }
+  .prev {
+    left: 0;
+  }
+
+  .active {
+    animation: ${move} 1s infinite;
+  }
 
   &::-webkit-scrollbar {
     height: 2px;
@@ -25,22 +70,72 @@ export const Grid = styled.div`
   &::-webkit-scrollbar-thumb {
     background: orange;
   }
+
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 export const Row = styled.div`
   padding: 3% 10%;
-  position: relative;
+
+  .three {
+    display: none;
+  }
 
   @media (max-width: 1400px) {
+    .four {
+      display: none;
+    }
+
+    .three {
+      display: grid;
+    }
+
+    .two {
+      display: none;
+    }
   }
   @media (max-width: 1000px) {
     padding: 3% 5%;
   }
   @media (max-width: 800px) {
     padding: 3% 5%;
+
+    .four {
+      display: none;
+    }
+    .three {
+      display: none;
+    }
+    .two {
+      display: grid;
+    }
   }
   @media (max-width: 600px) {
-    padding: 3% 1em;
+    padding: 3% 0em;
+
+    .four {
+      display: none;
+    }
+    .three {
+      display: none;
+    }
+    .two {
+      display: none;
+    }
+    .one {
+      display: grid;
+    }
   }
 `;
 export const SpinnerDiv = styled.div`

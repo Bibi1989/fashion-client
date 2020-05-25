@@ -44,10 +44,8 @@ const Card = ({ product, handleCart, handleView }: any) => {
 export default Card;
 
 export const Row = styled.div`
-  width: 20em;
-  margin-right: 1.5em;
   box-shadow: 0 2px 15px #dddddd;
-  transition: all 0.5s ease-in-out;
+  transition: all 1s ease-in-out;
 
   &:hover {
     box-shadow: 0 2px 2px #dddddd;
@@ -66,7 +64,7 @@ export const Buttons = styled.div`
 
 export const Image = styled.div`
   height: 25em;
-  width: 20em;
+  width: 100%;
   background: teal;
   position: relative;
   overflow: hidden;

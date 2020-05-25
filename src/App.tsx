@@ -15,6 +15,8 @@ import AllWomen from "./Components/ProductCards/AllWomen";
 import OrderList from "./Components/OrderList/OrderList";
 import Register from "./UserAuth/Register";
 
+import Carousel from "./Carousel/index";
+
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./UserAuth/Login";
 import PageNotFound from "./PageNotFound";
@@ -48,6 +50,9 @@ function App() {
               </Route>
               <Route exact path='/product/:productId'>
                 <SingleProduct />
+              </Route>
+              <Route exact path='/car'>
+                <Carousel />
               </Route>
               <Route to='/abc'>
                 <PageNotFound />
