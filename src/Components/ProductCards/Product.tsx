@@ -72,6 +72,7 @@ const Product = ({
     //   setIndex(0);
     // }
   };
+  console.log(index);
   return (
     <>
       <Header>
@@ -224,8 +225,8 @@ const Product = ({
               onClick={() => handlePrev(1)}
             />
             <Icon
-              disabled={index > products.length - 1 && true}
-              className={index > products.length - 1 ? "next" : "next active"}
+              disabled={index >= products.length - 1 && true}
+              className={index >= products.length - 1 ? "next" : "next active"}
               name='chevron right'
               size='big'
               color='grey'

@@ -6,6 +6,7 @@ import Card from "./Card";
 import { Spinner } from "react-bootstrap";
 import ProductHeader from "./ProductHeader";
 import { Grid, Row, SpinnerDiv, ArrowPointer } from "./CommonProductStyle";
+import { Icon } from "semantic-ui-react";
 
 const WomenProduct = ({
   products,
@@ -19,7 +20,21 @@ const WomenProduct = ({
   React.useEffect(() => {
     womenProducts(dispatch);
   }, []);
+  const [index, setIndex] = React.useState(0);
+  //   products = products.slice(index, index + 3);
 
+  const handlePrev = (num: number) => {
+    setIndex((c) => (c -= num));
+    // if (index <= 0) {
+    //   setIndex(-3 + products.length);
+    // }
+  };
+  const handleNext = (num: number) => {
+    setIndex((c) => (c += num));
+    // if (index > products.length - 4) {
+    //   setIndex(0);
+    // }
+  };
   return (
     <>
       <ProductHeader
@@ -41,8 +56,8 @@ const WomenProduct = ({
         </SpinnerDiv>
       ) : (
         <Row>
-          <Grid>
-            {products.map((product: any) => (
+          <Grid className='four'>
+            {products.slice(index, index + 4).map((product: any) => (
               <Card
                 key={product.id}
                 product={product}
@@ -50,8 +65,101 @@ const WomenProduct = ({
                 handleView={handleView}
               />
             ))}
+            <Icon
+              disabled={index <= 0 && true}
+              className={index <= 0 ? "prev" : "prev active"}
+              name='chevron left'
+              size='big'
+              color='grey'
+              onClick={() => handlePrev(4)}
+            />
+            <Icon
+              disabled={index >= products.length - 4 && true}
+              className={index >= products.length - 4 ? "next" : "next active"}
+              name='chevron right'
+              size='big'
+              color='grey'
+              onClick={() => handleNext(4)}
+            />
           </Grid>
-          <ArrowPointer>&#9755;</ArrowPointer>
+          <Grid className='three'>
+            {products.slice(index, index + 3).map((product: any) => (
+              <Card
+                key={product.id}
+                product={product}
+                handleCart={handleCart}
+                handleView={handleView}
+              />
+            ))}
+            <Icon
+              disabled={index <= 0 && true}
+              className={index <= 0 ? "prev" : "prev active"}
+              name='chevron left'
+              size='big'
+              color='grey'
+              onClick={() => handlePrev(3)}
+            />
+            <Icon
+              disabled={index >= products.length - 3 && true}
+              className={index >= products.length - 3 ? "next" : "next active"}
+              name='chevron right'
+              size='big'
+              color='grey'
+              onClick={() => handleNext(3)}
+            />
+          </Grid>
+          <Grid className='two'>
+            {products.slice(index, index + 2).map((product: any) => (
+              <Card
+                key={product.id}
+                product={product}
+                handleCart={handleCart}
+                handleView={handleView}
+              />
+            ))}
+            <Icon
+              disabled={index <= 0 && true}
+              className={index <= 0 ? "prev" : "prev active"}
+              name='chevron left'
+              size='big'
+              color='grey'
+              onClick={() => handlePrev(2)}
+            />
+            <Icon
+              disabled={index >= products.length - 2 && true}
+              className={index >= products.length - 2 ? "next" : "next active"}
+              name='chevron right'
+              size='big'
+              color='grey'
+              onClick={() => handleNext(2)}
+            />
+          </Grid>
+          <Grid className='one'>
+            {products.slice(index, index + 1).map((product: any) => (
+              <Card
+                key={product.id}
+                product={product}
+                handleCart={handleCart}
+                handleView={handleView}
+              />
+            ))}
+            <Icon
+              disabled={index <= 0 && true}
+              className={index <= 0 ? "prev" : "prev active"}
+              name='chevron left'
+              size='big'
+              color='grey'
+              onClick={() => handlePrev(1)}
+            />
+            <Icon
+              disabled={index >= products.length - 1 && true}
+              className={index >= products.length - 1 ? "next" : "next active"}
+              name='chevron right'
+              size='big'
+              color='grey'
+              onClick={() => handleNext(1)}
+            />
+          </Grid>
         </Row>
       )}
     </>

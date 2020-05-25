@@ -77,6 +77,7 @@ export const Grid = styled.div`
   @media (max-width: 1000px) {
     grid-template-columns: repeat(3, 1fr);
   }
+
   @media (max-width: 800px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -87,8 +88,14 @@ export const Grid = styled.div`
 
 export const Row = styled.div`
   padding: 3% 10%;
-
   .three {
+    display: none;
+  }
+
+  .two {
+    display: none;
+  }
+  .one {
     display: none;
   }
 
@@ -104,21 +111,45 @@ export const Row = styled.div`
     .two {
       display: none;
     }
+    .one {
+      display: none;
+    }
   }
   @media (max-width: 1000px) {
     padding: 3% 5%;
+
+    .four {
+      display: none;
+    }
+
+    .three {
+      display: grid;
+    }
+
+    .two {
+      display: none;
+    }
+    .one {
+      display: none;
+    }
   }
+
   @media (max-width: 800px) {
     padding: 3% 5%;
 
     .four {
       display: none;
     }
+
     .three {
       display: none;
     }
+
     .two {
       display: grid;
+    }
+    .one {
+      display: none;
     }
   }
   @media (max-width: 600px) {
