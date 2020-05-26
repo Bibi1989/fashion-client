@@ -3,9 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { SpinnerDiv } from "./CommonProductStyle";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Dropdown } from "react-bootstrap";
 import CategoryCard from "./CategoryCard";
-import { womenProducts, addOrder } from "../../ProductReducer/store";
+import {
+  womenProducts,
+  addOrder,
+  filterByPriceLow,
+  filterByPriceHigh,
+  filterByPriceLowWomen,
+  filterByPriceHighWomen,
+} from "../../ProductReducer/store";
 import { Header } from "./CommonProductStyle";
 
 const AllWomen = () => {
@@ -24,6 +31,20 @@ const AllWomen = () => {
     <>
       <Header>
         <h1>All Women Wears</h1>
+        <Dropdown>
+          <Dropdown.Toggle variant='info' id='dropdown-basic'>
+            Sort By
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => filterByPriceLowWomen(dispatch)}>
+              Price: Lowest - Highest
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => filterByPriceHighWomen(dispatch)}>
+              Price: Highest - Lowest
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </Header>
       {loading ? (
         <SpinnerDiv>

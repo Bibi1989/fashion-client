@@ -9,6 +9,7 @@ import { Cart } from "./Cart";
 import { fetchProducts } from "../ProductReducer/store";
 import { Link, useHistory } from "react-router-dom";
 import { RegisterInterface } from "../UserReducer/interface";
+import { logoutUser } from "../UserReducer/store";
 
 const Navs = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Navs = () => {
   }, [order_loading, count]);
   const fashion = localStorage.getItem("fashions");
   const products = useSelector(({ products: { products } }: any) => products);
-  console.log(products);
+
   return (
     <Container>
       <Row>
@@ -76,8 +77,7 @@ const Navs = () => {
                     <Button
                       className='btn_login'
                       onClick={() => {
-                        sessionStorage.removeItem("ere_token");
-                        sessionStorage.removeItem("ere_user");
+                        logoutUser(dispatch, history);
                       }}
                     >
                       Logout

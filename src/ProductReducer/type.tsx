@@ -11,3 +11,7 @@ export const FETCH_ORDER: string = "FETCH_ORDER";
 export const ADD_ORDER: string = "ADD_ORDER";
 export const DELETE_ORDER: string = "DELETE_ORDER";
 export const ORDER_LOADING: string = "ORDER_LOADING";
+export const PRICE_LOW: string = "PRICE_HIGH";
+export const PRICE_HIGH: string = "PRICE_LOW";
+export const PRICE_LOW_WOMEN: string = "PRICE_LOW_WOMEN";
+export const PRICE_HIGH_WOMEN: string = "PRICE_HIGH_WOMEN";

@@ -9,7 +9,12 @@ import {
   FETCH_ORDER,
   ORDER_LOADING,
   ADD_ORDER,
+  PRICE_LOW,
+  PRICE_HIGH,
+  PRICE_LOW_WOMEN,
+  PRICE_HIGH_WOMEN,
 } from "./type";
+import { fetchProducts } from "./store";
 
 const initialState = {
   products: [],
@@ -45,7 +50,7 @@ export const reducer = (state = initialState, action: any) => {
     case FETCH:
       return {
         ...state,
-        products: action.payload,
+        products: [...action.payload],
       };
     case SINGLE:
       return {
@@ -61,6 +66,38 @@ export const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         women: action.payload,
+      };
+    case PRICE_LOW:
+      let low = state.products.filter(
+        (product: any) => product.category.toLowerCase() == "men"
+      );
+      return {
+        ...state,
+        men: low.sort((a: any, b: any) => a.price - b.price),
+      };
+    case PRICE_HIGH:
+      let high = state.products.filter(
+        (product: any) => product.category.toLowerCase() == "men"
+      );
+      return {
+        ...state,
+        men: high.sort((a: any, b: any) => b.price - a.price),
+      };
+    case PRICE_LOW_WOMEN:
+      let low_women = state.products.filter(
+        (product: any) => product.category.toLowerCase() == "women"
+      );
+      return {
+        ...state,
+        women: low_women.sort((a: any, b: any) => a.price - b.price),
+      };
+    case PRICE_HIGH_WOMEN:
+      let high_women = state.products.filter(
+        (product: any) => product.category.toLowerCase() == "women"
+      );
+      return {
+        ...state,
+        women: high_women.sort((a: any, b: any) => b.price - a.price),
       };
     case FETCH_ORDER:
       return {

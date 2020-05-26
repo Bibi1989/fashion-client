@@ -1,7 +1,7 @@
 import axios from "axios";
 import { RegisterInterface, LoginInterface } from "./interface";
 import { RegisterAction, LoginAction } from "./action";
-import { ERROR, ERROR_LOGIN, LOADING } from "./types";
+import { ERROR, ERROR_LOGIN, LOADING, LOGOUT } from "./types";
 // const AUTH_URL = "http://localhost:4000/users";
 const AUTH_URL = "https://ere-place-api.herokuapp.com/users";
 
@@ -22,7 +22,8 @@ export const RegisterUser = async (
     dispatch(RegisterAction(response.data.data));
   } catch (error) {
     dispatch({ type: LOADING, payload: false });
-    dispatch({ type: ERROR, payload: error.response.data });
+    // dispatch({ type: ERROR, payload: error.response.data });
+    console.log(error.response);
   }
 };
 
@@ -45,9 +46,16 @@ export const LoginUser = async (
     dispatch(LoginAction(response.data.data));
   } catch (error) {
     dispatch({ type: LOADING, payload: false });
-    dispatch({
-      type: ERROR_LOGIN,
-      payload: error.response.data !== undefined && error.response.data,
-    });
+    // dispatch({
+    //   type: ERROR_LOGIN,
+    //   payload: error.response.data !== undefined && error.response.data,
+    // });
+    console.log(error);
   }
+};
+
+export const logoutUser = (dispatch: any, history: any) => {
+  sessionStorage.removeItem("ere_token");
+  sessionStorage.removeItem("ere_user");
+  history.push("/login");
 };

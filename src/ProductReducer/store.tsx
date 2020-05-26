@@ -14,6 +14,10 @@ import {
   ORDER_LOADING,
   ADD_ORDER,
   DELETE_ORDER,
+  PRICE_LOW,
+  PRICE_HIGH,
+  PRICE_LOW_WOMEN,
+  PRICE_HIGH_WOMEN,
 } from "./type";
 import { ProductInterface } from "./interfaces";
 
@@ -24,6 +28,7 @@ const wishlist: any = localStorage.getItem("wishlist");
 let fashion_products = JSON.parse(fashion_product) || [];
 let wishlists = JSON.parse(wishlist) || [];
 
+// filters products
 export const filterProducts = async (dispatch: any, category: string) => {
   dispatch({ type: LOADING, payload: true });
   const response = await axios.get(`${PRODUCT_URL}/api/products`, {
@@ -64,6 +69,20 @@ export const womenProducts = async (dispatch: any) => {
   );
   dispatch({ type: WOMEN_LOADING, payload: false });
   dispatch(womenAction(filter));
+};
+
+// filter by price
+export const filterByPriceLow = (dispatch: any) => {
+  dispatch({ type: PRICE_LOW });
+};
+export const filterByPriceHigh = (dispatch: any) => {
+  dispatch({ type: PRICE_HIGH });
+};
+export const filterByPriceLowWomen = (dispatch: any) => {
+  dispatch({ type: PRICE_LOW_WOMEN });
+};
+export const filterByPriceHighWomen = (dispatch: any) => {
+  dispatch({ type: PRICE_HIGH_WOMEN });
 };
 
 export const fetchProducts = async (dispatch: any) => {

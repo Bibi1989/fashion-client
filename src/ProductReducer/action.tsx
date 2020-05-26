@@ -13,6 +13,10 @@ export const fetchAction = (products: ProductInterface) => ({
   type: FETCH,
   payload: products,
 });
+// export const priceAction = (products: ProductInterface) => ({
+//   type: PRICE,
+//   payload: products,
+// });
 export const getSingleProductAction = (products: ProductInterface) => ({
   type: SINGLE,
   payload: products,

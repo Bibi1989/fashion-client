@@ -183,6 +183,10 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 3em 10% 0em 10%;
+
+  @media (max-width: 769px) {
+    padding: 3em 1em 0em 1em;
+  }
 `;
 
 export const Ul = styled.ul`
