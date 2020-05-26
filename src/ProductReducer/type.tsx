@@ -15,3 +15,5 @@ export const PRICE_LOW: string = "PRICE_HIGH";
 export const PRICE_HIGH: string = "PRICE_LOW";
 export const PRICE_LOW_WOMEN: string = "PRICE_LOW_WOMEN";
 export const PRICE_HIGH_WOMEN: string = "PRICE_HIGH_WOMEN";
+export const FILTER_DATE: string = "FILTER_DATE";
+export const FILTER_DATE_WOMEN: string = "FILTER_DATE";

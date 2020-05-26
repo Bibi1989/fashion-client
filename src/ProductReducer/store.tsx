@@ -18,6 +18,8 @@ import {
   PRICE_HIGH,
   PRICE_LOW_WOMEN,
   PRICE_HIGH_WOMEN,
+  FILTER_DATE,
+  FILTER_DATE_WOMEN,
 } from "./type";
 import { ProductInterface } from "./interfaces";
 
@@ -83,6 +85,12 @@ export const filterByPriceLowWomen = (dispatch: any) => {
 };
 export const filterByPriceHighWomen = (dispatch: any) => {
   dispatch({ type: PRICE_HIGH_WOMEN });
+};
+export const filterByDate = (dispatch: any) => {
+  dispatch({ type: FILTER_DATE });
+};
+export const filterByDateWomen = (dispatch: any) => {
+  dispatch({ type: FILTER_DATE_WOMEN });
 };
 
 export const fetchProducts = async (dispatch: any) => {

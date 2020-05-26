@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
@@ -10,13 +10,15 @@ import {
   addOrder,
   filterByPriceLow,
   filterByPriceHigh,
+  filterByDate,
 } from "../../ProductReducer/store";
 import { Header } from "./CommonProductStyle";
+import { Icon } from "semantic-ui-react";
 
 const AllMen = () => {
   const token = sessionStorage.getItem("ere_token");
   const dispatch = useDispatch();
-  const history = useHistory();
+  const [text, setText] = useState("Sort By");
   const men = useSelector(({ products }: any) => products.men);
   const loading = useSelector(({ products }: any) => products.loading);
   useEffect(() => {
@@ -31,16 +33,29 @@ const AllMen = () => {
       <Header>
         <h1>All Men Wears</h1>
         <Dropdown>
-          <Dropdown.Toggle variant='info' id='dropdown-basic'>
-            Sort By
+          <Dropdown.Toggle id='dropdown-basic'>
+            <Icon name='sort amount down' /> {text}
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => filterByPriceLow(dispatch)}>
+            <Dropdown.Item
+              onClick={() => {
+                setText("Price: Lowest - Highest");
+                filterByPriceLow(dispatch);
+              }}
+            >
               Price: Lowest - Highest
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => filterByPriceHigh(dispatch)}>
+            <Dropdown.Item
+              onClick={() => {
+                setText("Price: Highest - Lowest");
+                filterByPriceHigh(dispatch);
+              }}
+            >
               Price: Highest - Lowest
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => filterByDate(dispatch)}>
+              Date
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

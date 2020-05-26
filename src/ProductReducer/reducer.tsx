@@ -13,6 +13,7 @@ import {
   PRICE_HIGH,
   PRICE_LOW_WOMEN,
   PRICE_HIGH_WOMEN,
+  FILTER_DATE,
 } from "./type";
 import { fetchProducts } from "./store";
 
@@ -98,6 +99,14 @@ export const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         women: high_women.sort((a: any, b: any) => b.price - a.price),
+      };
+    case FILTER_DATE:
+      let date = state.products.filter(
+        (product: any) => product.category.toLowerCase() == "men"
+      );
+      return {
+        ...state,
+        men: date.sort((a: any, b: any) => b.createdAt - a.createdAt),
       };
     case FETCH_ORDER:
       return {
