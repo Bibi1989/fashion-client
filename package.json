@@ -15,7 +15,7 @@
     "@types/react-select": "^3.0.12",
     "@types/redux-logger": "^3.0.7",
     "@types/styled-components": "^5.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
